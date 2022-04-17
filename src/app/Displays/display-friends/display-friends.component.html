@@ -1,0 +1,68 @@
+<section class="container">
+  <div class="panel panel-default">
+
+    <div class="panel-body">
+
+      <div class="panel panel-default" *ngFor="let friend of friends; let i = index">
+
+        <div class="panel-body">
+          <b>Nick:</b> {{friend.userName}}
+        </div>
+
+        <div class="btn-group form-group">
+          <button class="btn btn-default" (click)="deleteFriend(friend.id)" type="submit">Usuń</button>
+          <button class="btn btn-default" (click)="show(!isMail, i)" type="submit">Wyślij wiadomowść</button>
+        </div>
+
+        <ng-container *ngIf="(isMail == true) && (FrendIndex == i)">
+          <p class="ErrorMessage" *ngIf='errorReturn && !ErrorMessage'>Wypełnij pole</p>
+          <p class="ErrorMessage" *ngIf='ErrorMessage !=""'>{{ErrorMessage}}</p>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <b>Nowa wiadomość</b>
+            </div>
+
+            <div class="panel-body">
+              <form (ngSubmit)="createMail(friend.friend_Userid)">
+
+                <div class="panel-body">
+                  <label class="control-label"> Treść </label>
+                  <textarea class="form-control" name="name" [(ngModel)]="mail.contents" type="text"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <button class="btn btn-default" type="submit">Wyślij</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </ng-container>
+
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <b>Dodaj Znajomego</b>
+        </div>
+
+        <div class="panel-body">
+          <p class="ErrorMessage" *ngIf='ErrorFriend !=""'>{{ErrorFriend}}</p>
+
+          <form class="form" (ngSubmit)="createFriend()">
+
+            <div class="panel-body">
+              <label class="control-label"> Nazwa użytkownika </label>
+              <input class="form-control" name="name" [(ngModel)]="nameFriend" type="text" />
+            </div>
+
+            <div class="form-group">
+              <button class="btn btn-default" type="submit">Dodaj</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

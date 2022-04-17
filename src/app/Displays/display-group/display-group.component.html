@@ -1,0 +1,56 @@
+<section class="container">
+  <div class="panel panel-default">
+
+    <div class="panel-heading">
+      <b>Grupy</b>
+    </div>
+
+    <div class="panel-body">
+      <div class="panel panel-default" *ngFor="let group of groups; let i = index">
+
+        <div class="panel-body">
+          <b>Nazwa:</b> {{group.name}} <br />
+          <button class="btn btn-default" type="submit" [routerLink]="['/group',group.id]">Wyświetl</button>
+          <button class="btn btn-default" (click)="deleteUserInGroup(group.id)" type="submit">Usuń</button>
+        </div>
+
+      </div>
+
+      <p class="ErrorMessage" *ngIf='errorReturn && !ErrorMessage'>Wypełnij wszystkie pola</p>
+      <p class="ErrorMessage" *ngIf='ErrorMessage !=""'>{{ErrorMessage}}</p>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <b>Nowa grupa</b>
+        </div>
+
+        <div class="panel-body">
+          <form (ngSubmit)="CreateGroup()">
+
+            <div class="panel-body">
+              <label class="control-label"> Nazwa </label>
+              <input class="form-control" name="name" [(ngModel)]="groupNew.name" type="text" />
+            </div>
+
+            <div class="form-group">
+              <button class="btn btn-default" type="submit">Dodaj</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <b>Wszystkie grupy</b>
+          </div>
+
+          <div class="panel-body" *ngFor="let group of groupsAll; let i = index">
+            <b>Nazwa:</b> {{group.name}}<br />
+            <button class="btn btn-default" (click)="AddUserGroup(group.id)" type="submit">Dołącz</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>

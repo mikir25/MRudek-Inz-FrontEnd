@@ -1,0 +1,47 @@
+<section class="container">
+  <div class="panel panel-default">
+
+    <div class="panel-body">
+      <div class="panel panel-default" *ngFor="let mail of mails; let i = index">
+
+        <div class="panel-body">
+          <b>Adresat:</b> {{mail.userName}} <br />
+          <b>Treść:</b> {{mail.contents}}<br />
+          <button class="btn btn-default" (click)="deleteMail(mail.id)" type="submit">Usuń</button>
+        </div>
+
+      </div>
+
+      <p class="ErrorMessage" *ngIf='errorReturn && !ErrorMessage'>Wypełnij wszystkie pola</p>
+      <p class="ErrorMessage" *ngIf='ErrorMessage !=""'>{{ErrorMessage}}</p>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <b>Nowa wiadomość</b>
+        </div>
+
+        <div class="panel-body">
+          <form (ngSubmit)="createMail()">
+
+            <div class="panel-body">
+              <label class="control-label"> Odbiorca </label>
+              <input class="form-control" name="name" [(ngModel)]="nameRecipient" type="text" />
+            </div>
+
+            <div class="panel-body">
+              <label class="control-label"> Treść </label>
+              <textarea class="form-control" name="name" [(ngModel)]="mailNew.contents" type="text"></textarea>
+            </div>
+
+            <div class="form-group">
+              <button class="btn btn-default" type="submit">Wyślij</button>
+            </div>
+          </form>
+        </div>
+      </div>    
+
+    </div>
+  </div>
+</section>
+
+

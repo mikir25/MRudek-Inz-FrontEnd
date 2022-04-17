@@ -1,0 +1,152 @@
+<section class="container">
+
+  <div class="panel panel-default" *ngFor="let tutorial of tutorials; let i = index">
+
+
+    <div class="panel-body">
+      <b>Treść: </b> {{tutorial.contents}} <br />
+      <span *ngIf="tutorial.rating"><b>Ocena: </b> {{tutorial.rating}}</span>
+    </div>
+
+    <section class="panel-body pictures">
+      <div class="picture" *ngFor="let picture of tutorial.pictures; let j = index">
+        <img class="img-responsive" [src]="picture.picture" />
+      </div>
+    </section>
+
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <b> Komentarze</b>
+      </div>
+
+      <div class="panel-body" *ngFor="let comment of tutorial.comments; let k = index">
+
+        <div class="panel panel-default" *ngIf="!((isEdit == true) && (editIndex == k && tutorialIndex == i))">
+          <div class="panel-heading">
+            <mat-icon>person</mat-icon>
+            <b> Nick: </b> {{comment.userName}}
+          </div>
+
+          <div class="panel-body">
+            <mat-icon>comment</mat-icon>
+            <b> Komentarz: </b> {{comment.contents}}
+            <br />
+            <b> Ocena: </b> {{comment.rating}}
+            <br />
+            <div class="btn-group" *ngIf="comment.userId == userId || roleUser == 'Admin'" >
+              <button class="btn btn-default" (click)="show(!isEdit, k, i)" type="submit">
+                <mat-icon>add</mat-icon>
+                Edytuj
+              </button>
+
+              <button class="btn btn-default" (click)="deleteComment(comment.id)" type="submit">
+                <mat-icon>delete</mat-icon>
+                Usuń
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Edit Comment  -->
+        <ng-container *ngIf="((isEdit == true) && (editIndex == k && tutorialIndex == i))">
+
+          <div class="panel panel-default">
+
+            <div class="panel-heading">
+              <b> Edytuj komentarz: </b>
+            </div>
+
+            <div class="panel-body">
+
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <label class="control-label">
+                    Ocena:
+                  </label>
+                </div>
+
+                <div class="panel-body">
+                  <label>
+                    <b>Ocena </b>
+
+                    <span *ngIf="rating.value">{{rating.value}}/10</span>
+
+                    <br />
+                    <input class="form-control" #rating (input)="rating.value" type="range" value="{{comment.rating}}" name="rating" min="1" max="10">
+                  </label>
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <label class="control-label">
+                    Treść:
+                  </label>
+                </div>
+
+                <div class="panel-body">
+                  <textarea class="form-control" #editComment rows="5">{{comment.contents}}</textarea>
+                  <br />
+                </div>
+              </div>
+
+              <button class="btn btn-default" (click)="updateComment(editComment.value, rating.valueAsNumber, comment.id)" type="submit">Wyślij</button>
+
+            </div>
+
+          </div>
+
+        </ng-container>
+
+      </div>
+
+      <!-- New Comment  -->
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <b> Nowy komentarz: </b>
+        </div>
+
+        <div class="panel-body">
+
+          <label class="control-label">
+            Ocena:
+          </label>
+          {{newCommentRange.value}}/10
+          <br />
+          <input class="form-control" #newCommentRange (input)="newCommentRange.value" value="1" type="range" name="rating" min="1" max="10">
+
+          <label class="control-label">
+            Treść:
+          </label>
+          <textarea class="form-control" #newComment rows="5"></textarea>
+
+          <div class="form-group">
+            <button class="btn btn-default" (click)="createComment(newComment.value, newCommentRange.valueAsNumber, tutorial.id)" type="submit">Wyślij</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Edit, Delete Post -->
+    <div class="btn-group panel-body" *ngIf="tutorial.userId == userId || roleUser == 'Admin'">
+      <button class="btn btn-default" [routerLink]="['/tutorial/form',tutorial.id]" type="button">
+        <mat-icon>add</mat-icon>
+        Edytuj
+      </button>
+
+      <button class="btn btn-default" (click)="delete(tutorial.id, i)" type="submit">
+        <mat-icon>delete</mat-icon>
+        Usuń
+      </button>
+    </div>
+
+  </div>
+</section>
+
+

@@ -1,0 +1,4 @@
+ng g class XYZ --skip-tests //clasy
+ng g service http-XYZ --skip-tests //Serwisy
+ng g component XYZ --skip-tests //Komponent
+

@@ -1,0 +1,121 @@
+<header>
+  <div class="page-name">Portal społecznościowy zrzeszający</div>
+  <div class="page-name">fanów uniwersum STAR WARS</div>
+
+</header>
+
+<nav class="menu colorwhite" *ngIf="nameUser">
+
+  <div class="el-menu"><button mat-button [matMenuTriggerFor]="postMenu">Posty</button></div>
+  <mat-menu #postMenu="matMenu">
+    <button mat-menu-item routerLink="/post">
+      <mat-icon>forum</mat-icon>
+      <span>Wyświetl posty</span>
+    </button>
+
+    <button mat-menu-item routerLink="/post/form">
+      <mat-icon>add</mat-icon>
+      <span>Dodaj post</span>
+    </button>
+  </mat-menu>
+
+  <div class="el-menu"><button mat-button [matMenuTriggerFor]="eventMenu">Eventy</button></div>
+  <mat-menu #eventMenu="matMenu">
+    <button mat-menu-item routerLink="/event">
+      <mat-icon>forum</mat-icon>
+      <span>Wyświetl eventy</span>
+    </button>
+
+    <button mat-menu-item routerLink="/event/form">
+      <mat-icon>add</mat-icon>
+      <span>Dodaj event</span>
+    </button>
+  </mat-menu>
+
+  <div class="el-menu"><button mat-button [matMenuTriggerFor]="forumMenu">Forum</button></div>
+  <mat-menu #forumMenu="matMenu">
+    <button mat-menu-item routerLink="/forum">
+      <mat-icon>forum</mat-icon>
+      <span>Wyświetl forum</span>
+    </button>
+
+    <button mat-menu-item routerLink="/forum/form">
+      <mat-icon>add</mat-icon>
+      <span>Dodaj post na forum</span>
+    </button>
+
+  </mat-menu>
+
+  <div class="el-menu"><button mat-button [matMenuTriggerFor]="gadgetMenu">Gadżety</button></div>
+  <mat-menu #gadgetMenu="matMenu">
+    <button mat-menu-item routerLink="/gadget">
+      <mat-icon>forum</mat-icon>
+      <span>Wyświetl gadżety</span>
+    </button>
+
+    <button mat-menu-item routerLink="/gadget/form">
+      <mat-icon>add</mat-icon>
+      <span>Dodaj post na gadżety</span>
+    </button>
+  </mat-menu>
+
+  <div class="el-menu"><button mat-button [matMenuTriggerFor]="tutorialMenu">Poradniki</button></div>
+  <mat-menu #tutorialMenu="matMenu">
+    <button mat-menu-item routerLink="/tutorial">
+      <mat-icon>forum</mat-icon>
+      <span>Wyświetl poradniki</span>
+    </button>
+
+    <button mat-menu-item routerLink="/tutorial/form">
+      <mat-icon>add</mat-icon>
+      <span>Dodaj post na poradniki</span>
+    </button>
+
+  </mat-menu>
+
+  <div class="el-menu"><button mat-button [matMenuTriggerFor]="accountMenu">Konto</button></div>
+  <mat-menu #accountMenu="matMenu">
+    <div class="nick colorwhite">
+      Nick: {{nameUser}}
+    </div>
+    <button mat-menu-item routerLink="/group">
+      <mat-icon>group</mat-icon>
+      <span>Grupy</span>
+    </button>
+    <button mat-menu-item routerLink="/friends">
+      <mat-icon>people_outline</mat-icon>
+      <span>Znajomi</span>
+    </button>
+    <button mat-menu-item routerLink="/massages">     
+      <mat-icon>message</mat-icon>
+      <span>Wiadomiści</span>
+    </button>
+    <button mat-menu-item routerLink="/editUser">
+      <mat-icon>edit</mat-icon>
+      <span>Edytuj dane konta</span>
+    </button>
+    <button mat-menu-item (click)="Logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Wyloguj się</span>
+    </button>
+  </mat-menu>
+
+</nav>
+
+<main id="content">
+
+  <ng-container *ngIf="nameUser !='' || NowUrl == '/registration'; else elseLogin">
+      <router-outlet></router-outlet>
+  </ng-container>
+
+
+  <ng-template #elseLogin>
+      <app-logging ></app-logging>
+    
+  </ng-template>
+
+</main>
+
+<footer>
+  Realizacja pracy inżynierskiej © 2022 Mikołaj Rudek
+</footer>
