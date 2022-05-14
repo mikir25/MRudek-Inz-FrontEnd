@@ -1,4 +1,7 @@
-# Praca
+# Projekt i realizacja portalu społecznościowego dla fanów uniwersum STAR WARS
+Celem niniejszej pracy inżynierskiej jest opracowanie projektu oraz implementacja portalu społecznościowego dla fanów uniwersum Star Wars. Portal ten przeznaczony będzie dla wąskiej grupy fanów, co spowoduję konieczność zaimplementowania funkcji wspierających zarówno zainteresowania jak i obszary aktywności takiej grupy docelowej. Przewiduję zaimplementowanie organizacji spotkań, popularnie nazywanych eventami, komunikatora tekstowego, forum dyskusyjnego, tablicy ogłoszeń z gadżetami oraz kostiumami, poradników tworzenia kostiumów. Projekt zostanie zrealizowany jako aplikacja internetowa, w architekturze REST API.
+
+Aktualna aplikacja realizuję warstwe prezentacji realizowana była w języku TypeScript z wykorzystaniem pakietu Angular. Projekt był realizowany oprogramowaniem Visual Studio.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
 
